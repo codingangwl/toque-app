@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "author": "Camila R.",
+    "rating": 5,
+    "text": "Excelente atención, la comida llegó rápido y caliente.",
+    "date": "2026-09-20",
+    "flagged": false
+  },
+  {
+    "id": 2,
+    "author": "Josh T.",
+    "rating": 5,
+    "text": "Great coffee, fast wifi, will come back.",
+    "date": "2026-09-19",
+    "flagged": false
+  },
+  {
+    "id": 3,
+    "author": "Anónimo",
+    "rating": 1,
+    "text": "Este lugar es una mierda, el mesero es un negro inútil que no sabe nada.",
+    "date": "2026-09-18",
+    "flagged": false
+  },
+  {
+    "id": 4,
+    "author": "Andrés M.",
+    "rating": 4,
+    "text": "Buena música, rico ambiente, volveré seguro.",
+    "date": "2026-09-17",
+    "flagged": false
+  },
+  {
+    "id": 5,
+    "author": "user8827",
+    "rating": 1,
+    "text": "COMPRA SEGUIDORES BARATOS EN www.fakelink.com click aqui!!!",
+    "date": "2026-09-16",
+    "flagged": false
+  },
+  {
+    "id": 6,
+    "author": "Laura P.",
+    "rating": 3,
+    "text": "Estuvo normal, nada especial pero tampoco malo.",
+    "date": "2026-09-15",
+    "flagged": false
+  }
+]
