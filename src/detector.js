@@ -1,5 +1,5 @@
 const REGLAS = {
-  ofensivo: /\b(mierda|idiota|imb[eé]cil|hijueputa|malparid[oa])\b/i,
+    ofensivo: /\b(mierda+|idiota+|imb[eé]cil(es)?|hijueputa+|malparid[oa]+)\b/i,
   discriminatorio: /\bnegro\s+(in[uú]til|de mierda|asqueroso)\b/i,
   spam: /(https?:\/\/|www\.|\.com\b)/i,
 };
