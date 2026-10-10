@@ -22,7 +22,7 @@ async function networkFirst(request) {
     cache.put(request, response.clone());
     return response;
   } catch {
-    return caches.match(request);
+    return (await caches.match(request)) ?? Response.error();
   }
 }
 
