@@ -1,21 +1,21 @@
 import { analyzeReview } from './detector.js';
 
-export async function cargarResenas() {
+export async function loadReviews() {
   try {
-    const respuesta = await fetch('/data/reviews.json');
-    if (!respuesta.ok) throw new Error(`Error HTTP ${respuesta.status}`);
+    const result = await fetch('/data/reviews.json');
+    if (!result.ok) throw new Error(`Error HTTP ${result.status}`);
 
-    const resenas = await respuesta.json();
-    return resenas.map((r) => ({ ...r, ...analyzeReview(r.text) }));
+    const reviews = await result.json();
+    return reviews.map((r) => ({ ...r, ...analyzeReview(r.text) }));
   } catch (error) {
     console.error('No se pudieron cargar las reseñas:', error);
     return [];
   }
 }
 
-export const filtrarAlertadas = (resenas) => resenas.filter((r) => r.flagged);
+export const filterFlagged = (reviews) => reviews.filter((r) => r.flagged);
 
-export const promedioRating = (resenas) =>
-  resenas.length === 0
+export const averageRating = (reviews) =>
+  reviews.length === 0
     ? 0
-    : resenas.reduce((acc, r) => acc + r.rating, 0) / resenas.length;
+    : reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length;

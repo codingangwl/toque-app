@@ -1,72 +1,72 @@
-import { promedioRating, filtrarAlertadas } from './reviews.js';
+import { averageRating, filterFlagged } from './reviews.js';
 
-const ETIQUETAS = {
+const LABELS = {
   ofensivo: 'Lenguaje ofensivo',
   discriminatorio: 'Discriminación',
   spam: 'Spam / links',
 };
 
-const ESTADOS = { revisada: 'Revisada', reportada: 'Reportada a Google' };
+const STATUSES = { revisada: 'Revisada', reportada: 'Reportada a Google' };
 
-function el(tag, clase, texto) {
-  const nodo = document.createElement(tag);
-  if (clase) nodo.className = clase;
-  if (texto !== undefined) nodo.textContent = texto;
-  return nodo;
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
 }
 
-const estrellas = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
+const stars = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
 
-function crearTarjeta(resena, onAccion) {
-  const tarjeta = el('article', resena.flagged ? 'tarjeta alertada' : 'tarjeta');
+function createCard(review, onAction) {
+  const card = el('article', review.flagged ? 'tarjeta alertada' : 'tarjeta');
 
-  const cabecera = el('div', 'tarjeta-cabecera');
-  cabecera.append(el('strong', 'autor', resena.author), el('span', 'estrellas', estrellas(resena.rating)));
+  const header = el('div', 'tarjeta-cabecera');
+  header.append(el('strong', 'autor', review.author), el('span', 'estrellas', stars(review.rating)));
 
-  const pie = el('div', 'tarjeta-pie');
-  pie.append(el('span', 'fecha', resena.date));
-  resena.motivos.forEach((m) => pie.append(el('span', 'chip', ETIQUETAS[m] ?? m)));
-  if (resena.estado !== 'pendiente') {
-    pie.append(el('span', 'chip estado', ESTADOS[resena.estado]));
+  const footer = el('div', 'tarjeta-pie');
+  footer.append(el('span', 'fecha', review.date));
+  review.motivos.forEach((m) => footer.append(el('span', 'chip', LABELS[m] ?? m)));
+  if (review.estado !== 'pendiente') {
+    footer.append(el('span', 'chip estado', STATUSES[review.estado]));
   }
 
-  tarjeta.append(cabecera, el('p', 'texto', resena.text), pie);
+  card.append(header, el('p', 'texto', review.text), footer);
 
-  if (resena.flagged && resena.estado === 'pendiente') {
-    const acciones = el('div', 'acciones');
-    const btnRevisada = el('button', 'btn', 'Ya la leí, no necesita acción');
-    const btnReportada = el('button', 'btn principal', 'La reporté a Google Maps');
-    btnRevisada.addEventListener('click', () => onAccion(resena.id, 'revisada'));
-    btnReportada.addEventListener('click', () => onAccion(resena.id, 'reportada'));
-    acciones.append(btnRevisada, btnReportada);
-    tarjeta.append(acciones);
+  if (review.flagged && review.estado === 'pendiente') {
+    const actions = el('div', 'acciones');
+    const reviewedBtn = el('button', 'btn', 'Ya la leí, no necesita acción');
+    const reportedBtn = el('button', 'btn principal', 'La reporté a Google Maps');
+    reviewedBtn.addEventListener('click', () => onAction(review.id, 'revisada'));
+    reportedBtn.addEventListener('click', () => onAction(review.id, 'reportada'));
+    actions.append(reviewedBtn, reportedBtn);
+    card.append(actions);
   }
 
-  return tarjeta;
+  return card;
 }
 
-export function renderResumen(contenedor, resenas) {
-  const pendientes = filtrarAlertadas(resenas).filter((r) => r.estado === 'pendiente').length;
+export function renderSummary(container, reviews) {
+  const pending = filterFlagged(reviews).filter((r) => r.estado === 'pendiente').length;
 
-  const datos = [
-    { num: promedioRating(resenas).toFixed(1), label: 'Promedio', clase: '' },
-    { num: resenas.length, label: 'Reseñas', clase: '' },
-    { num: pendientes, label: 'Alertas pendientes', clase: 'rosa' },
+  const stats = [
+    { num: averageRating(reviews).toFixed(1), label: 'Promedio', className: '' },
+    { num: reviews.length, label: 'Reseñas', className: '' },
+    { num: pending, label: 'Alertas pendientes', className: 'rosa' },
   ];
 
-  contenedor.replaceChildren(
-    ...datos.map((d) => {
+  container.replaceChildren(
+    ...stats.map((s) => {
       const stat = el('div', 'stat');
-      stat.append(el('div', `stat-num ${d.clase}`, d.num), el('div', 'stat-label', d.label));
+      stat.append(el('div', `stat-num ${s.className}`, s.num), el('div', 'stat-label', s.label));
       return stat;
     })
   );
 }
 
-export function renderLista(contenedor, resenas, onAccion) {
-  if (resenas.length === 0) {
-    contenedor.replaceChildren(el('p', 'vacio', 'No hay reseñas para mostrar aquí.'));
+export function renderList(container, reviews, onAction) {
+  if (reviews.length === 0) {
+    container.replaceChildren(el('p', 'vacio', 'No hay reseñas para mostrar aquí.'));
     return;
   }
-  contenedor.replaceChildren(...resenas.map((r) => crearTarjeta(r, onAccion)));
+  container.replaceChildren(...reviews.map((r) => createCard(r, onAction)));
 }

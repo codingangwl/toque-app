@@ -31,7 +31,7 @@ body {
 .explicacion { 
   font-size: 13.5px; color: var(--muted);
   line-height: 1.5;
-  max-width: 520px; margin-bottom: 23px;
+  max-width: 520px; margin-bottom: 40px;
 }
 
 /* Resumen */
