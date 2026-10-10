@@ -1,4 +1,4 @@
-import { analizarResena } from './detector.js';
+import { analyzeReview } from './detector.js';
 
 export async function cargarResenas() {
   try {
@@ -6,7 +6,7 @@ export async function cargarResenas() {
     if (!respuesta.ok) throw new Error(`Error HTTP ${respuesta.status}`);
 
     const resenas = await respuesta.json();
-    return resenas.map((r) => ({ ...r, ...analizarResena(r.text) }));
+    return resenas.map((r) => ({ ...r, ...analyzeReview(r.text) }));
   } catch (error) {
     console.error('No se pudieron cargar las reseñas:', error);
     return [];

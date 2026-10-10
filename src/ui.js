@@ -34,8 +34,8 @@ function crearTarjeta(resena, onAccion) {
 
   if (resena.flagged && resena.estado === 'pendiente') {
     const acciones = el('div', 'acciones');
-    const btnRevisada = el('button', 'btn', 'Marcar revisada');
-    const btnReportada = el('button', 'btn principal', 'Ya la reporté a Google');
+    const btnRevisada = el('button', 'btn', 'Ya la leí, no necesita acción');
+    const btnReportada = el('button', 'btn principal', 'La reporté a Google Maps');
     btnRevisada.addEventListener('click', () => onAccion(resena.id, 'revisada'));
     btnReportada.addEventListener('click', () => onAccion(resena.id, 'reportada'));
     acciones.append(btnRevisada, btnReportada);

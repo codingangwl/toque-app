@@ -28,6 +28,12 @@ body {
 .logo span { color: var(--oro); }
 .subtitulo { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
 
+.explicacion { 
+  font-size: 13.5px; color: var(--muted);
+  line-height: 1.5;
+  max-width: 520px; margin-bottom: 23px;
+}
+
 /* Resumen */
 .resumen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
 .stat {
