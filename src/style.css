@@ -42,16 +42,18 @@ body {
 }
 .stat-num { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 700; color: var(--oro); line-height: 1; }
 .stat-num.rosa { color: var(--rosa); }
+.stat-num.crema { color: var(--crema); }
 .stat-label { font-size: 12px; color: var(--muted); margin-top: 8px; }
 
 /* Filtros */
-.filtros { display: flex; gap: 8px; margin-bottom: 20px; }
+.filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 .filtro {
   background: transparent; color: var(--crema); border: 1px solid var(--line);
   padding: 9px 18px; border-radius: 100px; font: 500 13px 'Sora', sans-serif; cursor: pointer;
 }
 .filtro:hover { border-color: var(--muted); }
 .filtro.activo { background: var(--oro); color: var(--bg-deep); border-color: var(--oro); font-weight: 700; }
+.cuenta { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; opacity: 0.75; margin-left: 2px; }
 
 /* Tarjetas */
 .lista { display: flex; flex-direction: column; gap: 14px; }
@@ -59,8 +61,10 @@ body {
   background: var(--bg-panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px;
 }
 .tarjeta.alertada { border-left: 4px solid var(--rosa); background: var(--bg-panel-2); }
+.tarjeta.por-responder { border-left: 4px solid var(--oro); }
 .tarjeta-cabecera { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .estrellas { color: var(--oro); letter-spacing: 1px; font-size: 14px; }
+.estrellas.sin { color: var(--muted); letter-spacing: 0; font-size: 12px; }
 .texto { font-size: 14.5px; line-height: 1.55; color: var(--crema); margin-bottom: 14px; }
 .tarjeta-pie { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .fecha { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--muted); margin-right: 4px; }
@@ -68,7 +72,9 @@ body {
   font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 100px;
   background: rgba(232, 68, 122, 0.18); color: var(--rosa);
 }
-.chip.estado { background: rgba(244, 167, 48, 0.18); color: var(--oro); }
+.chip.estado { background: rgba(242, 239, 230, 0.12); color: var(--crema); }
+.chip.responder { background: rgba(244, 167, 48, 0.18); color: var(--oro); }
+.chip.editada { background: transparent; border: 1px dashed var(--oro); color: var(--oro); }
 
 .acciones { display: flex; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
 .btn {
@@ -77,6 +83,38 @@ body {
 }
 .btn:hover { border-color: var(--crema); }
 .btn.principal { background: var(--rosa); border-color: var(--rosa); }
+.por-responder .btn.principal { background: var(--oro); border-color: var(--oro); color: var(--bg-deep); }
+.btn.enlace { border-color: transparent; color: var(--muted); padding-left: 0; padding-right: 0; text-decoration: underline; }
+.btn.enlace:hover { color: var(--crema); border-color: transparent; }
+.btn:focus-visible, .filtro:focus-visible, .toast-accion:focus-visible { outline: 2px solid var(--oro); outline-offset: 2px; }
+
+/* Avisos */
+.avisos { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.avisos:empty { display: none; }
+.aviso {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 16px; border-radius: 12px; font-size: 13.5px; line-height: 1.4;
+  border: 1px solid var(--line); background: var(--bg-panel);
+}
+.aviso.error { border-color: var(--rosa); }
+.aviso.warn { border-color: var(--oro); }
+.aviso .btn { flex-shrink: 0; padding: 6px 14px; }
+
+/* Toast (deshacer) */
+.toast {
+  position: fixed; left: 0; right: 0; bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  margin-inline: auto; width: fit-content; max-width: calc(100% - 32px);
+  transform: translateY(20px); opacity: 0; pointer-events: none;
+  display: flex; align-items: center; gap: 16px;
+  background: var(--crema); color: var(--bg-deep); padding: 12px 18px; border-radius: 12px;
+  font-size: 13.5px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.toast.visible { opacity: 1; transform: none; pointer-events: auto; }
+.toast-accion {
+  background: none; border: none; color: var(--rosa); font: 700 13.5px 'Sora', sans-serif;
+  cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px;
+}
 
 .vacio { text-align: center; color: var(--muted); padding: 50px 0; font-size: 14px; }
 

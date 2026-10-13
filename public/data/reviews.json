@@ -4,47 +4,55 @@
     "author": "Camila R.",
     "rating": 5,
     "text": "Excelente atención, la comida llegó rápido y caliente.",
-    "date": "2026-09-20",
-    "flagged": false
+    "date": "2026-09-20"
   },
   {
     "id": 2,
     "author": "Josh T.",
     "rating": 5,
     "text": "Great coffee, fast wifi, will come back.",
-    "date": "2026-09-19",
-    "flagged": false
+    "date": "2026-09-19"
   },
   {
     "id": 3,
     "author": "Anónimo",
     "rating": 1,
     "text": "Este lugar es una mierda, el mesero es un negro inútil que no sabe nada.",
-    "date": "2026-09-18",
-    "flagged": false
+    "date": "2026-09-18"
   },
   {
     "id": 4,
     "author": "Andrés M.",
     "rating": 4,
     "text": "Buena música, rico ambiente, volveré seguro.",
-    "date": "2026-09-17",
-    "flagged": false
+    "date": "2026-09-17"
   },
   {
     "id": 5,
     "author": "user8827",
     "rating": 1,
     "text": "COMPRA SEGUIDORES BARATOS EN www.fakelink.com click aqui!!!",
-    "date": "2026-09-16",
-    "flagged": false
+    "date": "2026-09-16"
   },
   {
     "id": 6,
     "author": "Laura P.",
     "rating": 3,
     "text": "Estuvo normal, nada especial pero tampoco malo.",
-    "date": "2026-09-15",
-    "flagged": false
+    "date": "2026-09-15"
+  },
+  {
+    "id": 7,
+    "author": "Mariana G.",
+    "rating": 2,
+    "text": "Esperamos 40 minutos y la comida llegó fría. El mesero fue amable pero la cocina muy lenta.",
+    "date": "2026-09-14"
+  },
+  {
+    "id": 8,
+    "author": "Felipe O.",
+    "rating": 5,
+    "text": "No es una mierda como dicen, ¡qué chimba de lugar! Volveré.",
+    "date": "2026-09-13"
   }
 ]

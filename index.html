@@ -21,18 +21,23 @@
         <div class="subtitulo">Panel de reseñas</div>
       </header>
       
-      <p class="explicacion">Estas son las reseñas que ya llegaron a Google Maps. Toque las revisa y te avisa cuales necesitan tu atención. Tu decides si respondes o la reportas.</p>
+      <p class="explicacion">Estas son las reseñas que ya llegaron a Google Maps. Toque las revisa y te avisa cuáles conviene <strong>reportar</strong> (ofensivas, discriminatorias o spam) y cuáles conviene <strong>responder</strong> (calificación baja). Tú decides qué hacer con cada una.</p>
+
+      <div class="avisos" id="avisos" role="status"></div>
 
       <section class="resumen" id="resumen"></section>
 
-      <nav class="filtros" id="filtros">
-      <button class="filtro activo" data-filtro="todas" title="Ver todas las reseñas, buenas y malas">Todas</button>
-      <button class="filtro" data-filtro="alertadas" title="Reseñas que el detector marcó como ofensivas, discriminatorias o spam">Alertadas</button>
-      <button class="filtro" data-filtro="pendientes" title="Alertadas que todavía no has revisado ni reportado">Pendientes</button>
+      <nav class="filtros" id="filtros" aria-label="Filtrar reseñas">
+        <button type="button" class="filtro activo" data-filtro="todas" aria-pressed="true" title="Ver todas las reseñas, buenas y malas">Todas <span class="cuenta"></span></button>
+        <button type="button" class="filtro" data-filtro="reportar" aria-pressed="false" title="Reseñas ofensivas, discriminatorias o spam que puedes reportar a Google">Para reportar <span class="cuenta"></span></button>
+        <button type="button" class="filtro" data-filtro="responder" aria-pressed="false" title="Reseñas con calificación baja que vale la pena responder">Para responder <span class="cuenta"></span></button>
+        <button type="button" class="filtro" data-filtro="pendientes" aria-pressed="false" title="Reseñas que todavía no has reportado, respondido ni descartado">Pendientes <span class="cuenta"></span></button>
       </nav>
 
       <main class="lista" id="lista"></main>
     </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script type="module" src="/src/main.js"></script>
   </body>
